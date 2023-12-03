@@ -1,1 +1,67 @@
-hi
+name: Node.js CI/CD
+
+on:
+  pull_request:
+    branches:
+      - test
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Run Tests
+      run: |
+        cd /path/to/your/app
+        npm install
+        npm run test
+
+  deploy_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v2
+
+    - name: SSH into EC2 and Deploy to Test Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.TEST_EC2_HOST }}
+        username: ${{ secrets.TEST_EC2_USERNAME }}
+        key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
+        script: |
+          sudo apt install -y npm nodejs
+          git clone https://github.com/Umairabid1612/takenote.git
+          cd takenote
+          npm install
+          npm run build
+          nohup npm run start &
+
+  deploy_production:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v2
+
+    - name: SSH into EC2 and Deploy to Production Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.PROD_EC2_HOST }}
+        username: ${{ secrets.PROD_EC2_USERNAME }}
+        key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
+        script: |
+          sudo apt install -y npm nodejs
+          git clone https://github.com/Umairabid1612/takenote.git
+          cd takenote
+          npm install
+          npm run build
+          nohup npm run start &
+
