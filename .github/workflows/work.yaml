@@ -19,7 +19,7 @@ jobs:
 
     - name: Run Tests
       run: |
-        ls
+        sudo apt install npm -y
         npm i
         npm run test
 
