@@ -19,7 +19,7 @@ jobs:
 
     - name: Run Tests
       run: |
-        cd /path/to/your/app
+        cd takenote
         npm install
         npm run test
 
