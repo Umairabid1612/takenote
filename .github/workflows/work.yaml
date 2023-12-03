@@ -39,7 +39,7 @@ jobs:
           sudo apt install -y npm nodejs
           git clone https://github.com/Umairabid1612/takenote.git
           cd takenote
-          npm install
+          npm i
           npm run build
           nohup npm run start &
 
@@ -60,7 +60,7 @@ jobs:
           sudo apt install -y npm nodejs
           git clone https://github.com/Umairabid1612/takenote.git
           cd takenote
-          npm install
+          npm i
           npm run build
           nohup npm run start &
 
