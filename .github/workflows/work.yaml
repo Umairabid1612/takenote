@@ -16,10 +16,12 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-
+    - name: Setup Node.js and npm
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14'
     - name: Run Tests
       run: |
-        sudo apt install npm -y
         npm i
         npm run test
 
