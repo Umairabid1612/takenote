@@ -40,6 +40,7 @@ jobs:
         username: ${{ secrets.TEST_EC2_USERNAME }}
         key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
         script: |
+          rm -rf takenote/
           sudo apt update
           sudo apt install -y npm nodejs
           git clone https://github.com/Umairabid1612/takenote.git
@@ -62,6 +63,7 @@ jobs:
         username: ${{ secrets.PROD_EC2_USERNAME }}
         key: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
         script: |
+          rm -rf takenote/
           sudo apt update
           sudo apt install -y npm nodejs
           git clone https://github.com/Umairabid1612/takenote.git
