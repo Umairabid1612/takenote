@@ -24,6 +24,7 @@ jobs:
 
   deploy_test:
     runs-on: ubuntu-latest
+    needs: run_test
 
     steps:
     - name: Clone Repository
@@ -45,7 +46,7 @@ jobs:
 
   deploy_production:
     runs-on: ubuntu-latest
-
+    needs: run_test
     steps:
     - name: Clone Repository
       uses: actions/checkout@v2
